@@ -8,6 +8,7 @@ export class HeaderService {
   private Username = '';
   private roles = '';
   private zone = '';
+  private userPreferredLanguage = '';
 
   constructor() { }
 
@@ -39,6 +40,18 @@ export class HeaderService {
 
   getZone(): string {
     return this.zone;
+  }
+
+  setUserPreferredLanguage(userPreferredLanguage: string) {
+    this.userPreferredLanguage = userPreferredLanguage;
+  }
+
+  getUserPreferredLanguage(): string {
+    if(this.userPreferredLanguage){
+      return this.userPreferredLanguage;
+    }else{
+      return "eng";
+    }    
   }
 }
 
