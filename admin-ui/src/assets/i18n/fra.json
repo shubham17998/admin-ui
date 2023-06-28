@@ -285,6 +285,50 @@
         "statuscheckFailed":"Échoué",
         "statuscheckCompleted":"Terminé"
     },
+    "packet-upload": {
+		"header": "Téléchargement de paquets",
+		"singleView": {
+			"detailed-view-txt": "Vue détaillée",
+			"status-txt": "Statut",
+			"uploadedBy-txt": "Telechargé par",
+			"count-txt": "Compter",
+			"dataAndTime-txt": "Date et l'heure",
+			"failureDescription-txt": "description de l'échec",
+			"placeHolder1-txt": "Nom de la table",
+			"placeHolder2-txt": "Opérations"
+		},
+		"createView": {
+			"input-btn-text": "Choisir le fichier",
+			"input-text1": "Téléverser un fichier...",
+			"input-text2": "Téléchargez votre fichier",
+			"upload-btn": "TÉLÉCHARGER",
+			"cancel-btn": "ANNULER",
+			"center": "Centre",
+	        "sourceLabel": "La source",
+	        "processLabel": "Traiter",
+	        "supervisorStatusLabel": "Statut de superviseur",
+			"popupMessaages": {
+				"popup1": {
+					"uploadConfirm": "Confirmer le téléchargement des paquets",
+					"message": "Le paquet sera traité. \n Veuillez vous assurer que toutes les informations sont correctes. \n \n \n La transaction démarrera une fois que vous aurez cliqué sur Confirmer.",
+					"confirmBtnTxt": "CONFIRMER",
+					"cancelBtnTxt": "Annuler"
+				},
+				"popup2": {
+					"title": "Échec",
+					"btnTxt": "TERMINÉ"
+				},
+				"popup3": {
+					"title": "Succès",
+					"message": "Votre fichier a été téléchargé avec succès. \n Le téléchargement des données est en cours. \n \n \n ID de transaction:",
+					"btnTxt": "TERMINÉ"
+				}
+			},
+            "source":[{"label":"Client d'inscription","value":"REGISTRATION_CLIENT"}],
+            "process":[{"label":"Nouveau","value":"NEW"},{"label":"Mettre à jour l'UIN","value":"UPDATE"},{"label":"Perdu","value":"LOST"},{"label":"Correction biométrique","value":"BIOMETRIC_CORRECTION"}],
+            "supervisorStatus":[{"label":"Approuvé","value":"APPROVED"},{"label":"Rejeté","value":"REJECTED"}]
+		}
+	},
     "actionMessages" : {
         "decommission": {
             "success-message": ["Le centre d'inscription ", " est déclassé avec succès"],
