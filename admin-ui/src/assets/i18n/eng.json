@@ -465,6 +465,87 @@
         "statuscheckCompleted":"Completed"
 
     },
+    "download-card": {
+        "header": "Download Card",
+        "text": "Please enter a Registration ID to download the digital card",
+        "error": "Invalid Registration ID Entered",
+        "id": "Registration ID",
+        "dob": "Date of Birth",
+        "verifyanddownload": "I have verified the face.",
+        "reject": "The face does not match.",
+        "submit": "Reject",
+        "download": "Download",
+        "searchLimit": "You are left with",
+        "outof": "searches out of",
+        "dailylimit": "from your daily limit",
+        "verify": "Can you confirm if the face verified?",
+        "placeholder":"Registration ID",
+        "errorMessages": {
+            "title": "Error",
+            "message": "RID Not Found",
+            "btnTxt": "Ok"
+        },
+        "popupMessages": {
+            "rejectMessages": {
+                "title": "Success",
+                "message": "You have rejected the verification.",
+                "btnTxt": "Ok"
+            },
+            "noData": {
+                "title": "Error",
+                "message": "No Data Found",
+                "btnTxt": "Ok"
+            }
+        },
+        "statuscheckFailed":"Failed",
+        "statuscheckCompleted":"Completed"
+
+    },
+    "packet-upload":{
+        "header":"Packet Upload",
+        "singleView":{
+          "detailed-view-txt":"Detailed View",
+          "status-txt":"Status",
+          "uploadedBy-txt": "Uploaded By",
+          "count-txt":"Count",
+          "dataAndTime-txt" : "Date And Time",
+          "failureDescription-txt":"Failure Description",
+          "placeHolder1-txt":"Table Name",
+          "placeHolder2-txt":"Operations"
+        },
+        "createView":{
+          "input-btn-text":"Choose File",
+          "input-text1":"Upload file...",
+          "input-text2":"Upload Your File",
+          "upload-btn":"UPLOAD",
+          "cancel-btn":"CANCEL",
+          "center": "Center",
+          "sourceLabel": "Source",
+          "processLabel": "Process",
+          "supervisorStatusLabel": "Supervisor Status",
+          "popupMessaages":{
+              "popup1":{
+                  "uploadConfirm":"Confirm Packet Upload",
+                  "message":"Packet will be processed.\n Please ensure that all information is correct.\n\n\n Transaction will start once you click on confirm.",
+                  "confirmBtnTxt":"CONFIRM",
+                  "cancelBtnTxt":"Cancel"
+              },
+              "popup2":{
+                  "title":"Failure",
+                  "btnTxt":"DONE"
+              },
+              "popup3":{
+                  "title":"Success",
+                  "message" :"Your file has been uploaded successfully. \n Data upload is currently in progress.\n\n\n Transaction ID :",
+                  "btnTxt":"DONE"
+              }
+       
+          },
+          "source":[{"label":"Registration Client","value":"REGISTRATION_CLIENT"}],
+          "process":[{"label":"New","value":"NEW"},{"label":"Update UIN","value":"UPDATE"},{"label":"Lost","value":"LOST"},{"label":"Biometrics Correction","value":"BIOMETRIC_CORRECTION"}],
+          "supervisorStatus":[{"label":"Approved","value":"APPROVED"},{"label":"Rejected","value":"REJECTED"}]
+        }
+      },
     "actionMessages" : {
         "decommission": {
             "success-message": ["", " is Decommissioned successfully"],
