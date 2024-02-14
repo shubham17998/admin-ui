@@ -104,10 +104,10 @@
               </mat-form-field>
             </div>
             <mat-card-actions class="action-buttons">
-              <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable === 'editable'" (click)="submitPrimaryPanel()">
+              <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable['editable']" (click)="submitPrimaryPanel()">
                 {{ "center.update" | translate }}
               </button>
-              <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable === 'langCode'" (click)="submitPrimaryPanel()">
+              <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable['langCode']" (click)="submitPrimaryPanel()">
                 {{ "center.create" | translate }}
               </button>
               <button mat-raised-button id="cancel" (click)="cancel()" *ngIf="secondaryLang">

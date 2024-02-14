@@ -101,7 +101,7 @@ export class EditComponent {
   dynamicFieldValue = {};
   showSpinner = false;
   showUpdateButton = null;
-  isEditable:string;
+  isEditable:any;
   constructor(
     private location: Location,
     private translateService: TranslateService,
@@ -227,7 +227,10 @@ export class EditComponent {
       this.filteredLanguages = this.supportedLanguages;
       this.getPrimaryPanelData(this.primaryLang);
     });
-    this.isEditable = window.location.href.split('?')[1].split('=')[0];
+    
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.isEditable = params
+    });
   }
 
   setLocaleForDatePicker = (localeId) => {    
