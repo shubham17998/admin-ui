@@ -3,7 +3,7 @@
 <div id="flex-single-view" style="padding-top: 12px;padding-bottom: 10px;">
 <div id="flex-container">
 <div id="myDiv" class="flex-body" *ngIf="displayedColumns && actionEllipsis">
-  <mat-card *ngIf="filterColumns">
+  <mat-card *ngIf="filterColumns" class="lost-rid-status-card">
     <div class="example-container">
       <span><h3 class="header">{{'lostRID.subtitleenrollment' | translate}}</h3></span>
       <div *ngFor="let field of filterColumns; let i = index" style="display:inline-flex;">
