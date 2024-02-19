@@ -32,6 +32,9 @@
             "subItem3": "الحصول على شهادة",
             "subItem4": "تحميل الشهادة",
             "subItem5": "تحميل شهادة مجال أخرى"
+        },
+        "item8": {
+            "title": "استرداد RID المفقود"
         }
     },
     "dashboard": {
@@ -439,7 +442,21 @@
         "unmapped-documents": "المستندات غير المعينة",
         "masterDataTypes": "أنواع البيانات الرئيسية",
         "dynamicField": "مجال ديناميكي",
-        "createDynamicField": "إنشاء حقل ديناميكي جديد"
+        "createDynamicField": "إنشاء حقل ديناميكي جديد",
+        "centerType":{
+            "create":{
+                "title": "تأكيد",
+                "message": "أنت على وشك إنشاء نوع المركز. \n الرجاء التأكد من صحة كافة المعلومات. سيتم إنشاء معرف المركز بمجرد التأكيد.",
+                "yesBtnText": "يتأكد",
+                "noBtnText": "يلغي"
+            },
+            "update":{
+                "title": "تأكيد",
+                "message": "أنت على وشك تحديث نوع المركز. \n الرجاء التأكد من صحة كافة المعلومات. سيتم تحديث تفاصيل المركز بمجرد التأكيد.",
+                "yesBtnText": "يتأكد",
+                "noBtnText": "يلغي"
+            }
+        }
     },
     "masterdataupload": {
         "title": "تحميل البيانات الرئيسية"
@@ -739,7 +756,7 @@
         "InActive":"غير نشط"
     },
     "lostRID":{
-        "titleTxt":"استرداد Lost RID",
+        "titleTxt":"استرداد RID المفقود",
         "subtitleenrollment":"تفاصيل التسجيل",
         "subtitlelocation":"موقع",
         "searchbtn":"بحث",
