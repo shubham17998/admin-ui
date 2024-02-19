@@ -1725,6 +1725,7 @@
 		"RPR-SEN-SUCCESS-001": "Notification reçue à securezone",
 		"RPR-RGS-034" : "la recherche entre les dates doit être inférieure à 30 jours",
 		"KER-MSD-394" : "Votre mappage de zone est manquant. Veuillez contacter l'administrateur.",
+		"KER-USR-025" : "Le mappage central est manquant, l'utilisateur ne peut pas être activé.",
 		"ADM-AVD-001" : "Une erreur technique s'est produite lors de la récupération des données, veuillez réessayer après un certain temps.",
         "ADM-AVD-002" : "Le RID est invalide",
         "ADM-AVD-003" : "La carte pour cet ID de demande n'est pas générée. Veuillez vérifier l'état de l'ID.",
