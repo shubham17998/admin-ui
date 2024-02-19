@@ -35,9 +35,6 @@
         },
         "item8": {
             "title": "Retrieve Lost RID"
-        },
-        "item9": {
-            "title": "Download Card"
         }
     },
     "dashboard": {
@@ -490,12 +487,12 @@
             "message": "Payload size exceeds the size limit. Kindly check the payload size.",
             "btnTxt": "Ok"
         },
-        "servicedown": {
+	"servicedown": {
             "title": "Service Temporarily Unavailable",
             "message": "Service is not ready to handle the request. Kindly try after sometime.",
             "btnTxt": "Ok"
         },
-        "offLine": {
+	"offLine": {
             "title": "No internet",
             "message": "Page cannot be loaded",
             "btnTxt": "Ok"
@@ -782,8 +779,9 @@
         "Zone":"Zone",
         "Logout":"Logout"
     },
-    "paginationLabel":{
-        "showRows":"Show rows"
+    "paginatorIntl": {
+        "itemsPerPageLabel": "Items per page: ",
+        "of":"of"
     },
     "keymanager": {
         "applicationIds": [{
@@ -851,6 +849,7 @@
         "statuscheckCompleted":"Completed"
 
     },
+
     "serverError": {
         "KER-KMS-001": "Certificate is not valid",
         "KER-KMS-002": "ApplicationId not found in Key Policy",
@@ -1092,6 +1091,7 @@
         "KER-MSD-058": "Error occure while inserting reason details ",
         "KER-MSD-263": "error occured while searching the record : invalid rquest",
         "KER-MSD-364": "failed to resume packet",
+	"KER-MSD-365": "Device Specification is Inactive",
         "ADM-DPM-032": "Device Provider ID/Name does not exist in the list of Registered Device Providers",
         "ADM-DPM-035": "Error occurred while storing Registered Device Details",
         "ADM-DPM-042": "%s Cannot register device as it is not a white-listed device",
@@ -1309,7 +1309,7 @@
         "KER-MSD-337": "Error occured while fetching zone",
         "KER-MSD-339": "No zone found for the logged-in user %s",
         "KER-MSD-338": "Error Occured while fetching zone of the user",
-        "KER-MSD-391": "Entity for user ID specified Not Found",
+        "KER-MSD-391": "Zone mapping missing. Kindly map the user to zone",
         "KER-MSD-392": "Entity for Zone Code of user ID specified Not Found",
         "ADM-PKT-001": "Admin is not authorized",
         "KER-MSD-393": "Internal Server Error",
@@ -1454,6 +1454,18 @@
         "RPR-SEN-SUCCESS-001": "Notification received to securezone",
         "RPR-RGS-034" : "searching between date should be less then 30 days",
         "KER-MSD-394" : "Your zone mapping missing. Please contact the administrator.",
-        "KER-USR-025" : "Center mapping is missing, the User cannot be Activated."
+        "KER-USR-025" : "Center mapping is missing, the User cannot be Activated.",
+        "ADM-AVD-001" : "A technical error occurred while retrieving the data, please try again after some time.",
+        "ADM-AVD-002" : "RID is invalid",
+        "ADM-AVD-003" : "The card for this request ID is not generated. Please check the status of the ID.",
+        "ADM-AVD-004" : "Applicant Photo Not Found",
+        "ADM-AVD-005" : "Digital card not found for the RID, please try after few days",
+        "ADM-AVD-006" : "Please acknowledge the details before downloading digital card",
+        "ADM-AVD-007" : "Request id not found",
+        "ADM-AVD-008" : "Your daily search limit has exceeded. Please try searching again tomorrow.",
+        "ADM-AVD-009" : "Data share usuage expired",
+        "ADM-AVD-509" : "RID not found",
+        "ADM-AVD-510" : "Applicant search limit exceeded",
+        "ADM-AVD-511" : "Request id not found"
     }
 }

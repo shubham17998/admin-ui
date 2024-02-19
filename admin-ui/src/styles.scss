@@ -14,7 +14,9 @@ html {
   font-size: 14px;
 }
 .success-img {
-  margin: 16px 0 0 42%;
+  /*margin: 16px 0 0 42%;*/
+  position: fixed;
+  left: 50%;
 }
 .spinner-placer {
   margin: 20% 0 0 40%;
@@ -68,7 +70,7 @@ h3 {
     margin:0px !important;
   }
   #flex-container {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     /* max-height: 87vh; */
     padding-bottom: 20px;
