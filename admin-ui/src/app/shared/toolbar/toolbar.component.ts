@@ -19,7 +19,6 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
   @Input() filtersAppliedFlag: boolean;
   @Output() pageEvent = new EventEmitter();
   lang: string;
-
   pageSize: number;
   itemsPerPageLabel: string = "";
   constructor(
@@ -33,7 +32,12 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
     super();
     let self = this;  
     self.translateService.getTranslation(self.headerService.getUserPreferredLanguage()).subscribe(response => {
-      self.itemsPerPageLabel = response.paginationLabel.showRows;
+      self.itemsPerPageLabel = response['paginatorIntl'].itemsPerPageLabel;
+      const originalGetRangeLabel = this.getRangeLabel;
+      self.getRangeLabel = (page: number, size: number, len: number) => {
+        return originalGetRangeLabel(page, size, len)
+            .replace('of', response['paginatorIntl'].of);
+      };
       self.ngOnInit();
     });    
   }
