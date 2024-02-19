@@ -216,7 +216,11 @@ export class CommonService {
           this.createMessage('success', callingFunction, actualData);     
           this.router.navigateByUrl(this.router.url);
         } else {
-          this.createMessage('error', callingFunction, actualData);
+          if(response.errors[0].errorCode === 'KER-USR-025'){
+             this.createridMessage('error', callingFunction, response)
+          }else{
+            this.createMessage('error', callingFunction, actualData);
+          }
         }
       },
       error => this.createMessage('error', callingFunction, actualData)
