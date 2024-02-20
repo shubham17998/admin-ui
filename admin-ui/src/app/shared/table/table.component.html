@@ -5,6 +5,7 @@
       <th
         *ngFor="let columnName of displayedColumns; let i = index"
         class="mat-header-cell table-header sticky-header"
+        [ngStyle]="{'width': columnName?.styles?.width ? columnName.styles.width : auto}"
       >
         <span class="columnName-sort-span" 
           ><span

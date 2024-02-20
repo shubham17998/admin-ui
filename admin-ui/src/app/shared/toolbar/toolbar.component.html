@@ -12,8 +12,8 @@
           'filter-button-style': button.buttonName.eng === 'Filter'
         }"
       >
-        <img [src]="button.imagePath" alt="Button Icon" height="14px" width="14px"/>
-        <span>{{ button.buttonName[lang]}}</span>
+      <img [src]="button.imagePath" alt="Button Icon"/>
+      <span class="button-name">{{ button.buttonName[lang]}}</span>
         <span class="filter-placer" *ngIf="button.buttonName.eng === 'Filter' && filtersAppliedFlag">
           <i style="font-size: 16px;" class="material-icons">fiber_manual_record</i>
         </span>
