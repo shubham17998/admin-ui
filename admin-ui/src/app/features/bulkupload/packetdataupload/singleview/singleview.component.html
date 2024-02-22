@@ -40,7 +40,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>{{'packet-upload.singleView.dataAndTime-txt'|translate}}</mat-label>
-              <input matInput placeholder="{{'packet-upload.singleView.placeHolder1-txt'|translate}}" id="timeStamp" value="{{data.timeStamp | date:'short'}}" readonly>
+              <input matInput placeholder="{{'packet-upload.singleView.placeHolder1-txt'|translate}}" id="timeStamp" value="{{localDate | date:'short'}}" readonly>
             </mat-form-field> 
           </div> 
           <div style="width: 10%">
