@@ -499,16 +499,19 @@ export class MaterDataCommonBodyComponent implements OnInit {
     }
   }
 
-  openKeyboard(type: string) {
+  openKeyboard(type: string, lang:any) {
+    let finalLang
     if (this.keyboardService.isOpened && this.keyboardType === type) {
       this.keyboardService.dismiss();
       this.keyboardRef = undefined;
     } else {
       this.keyboardType = type;
       if (type === 'primary') {
-        this.keyboardRef = this.keyboardService.open(this.primaryKeyboard);
+        finalLang = lang !== '' ? defaultJson.keyboardMapping[lang] : this.primaryLang;
+        this.keyboardRef = this.keyboardService.open(finalLang);
       } else if (type === 'secondary') {
-        this.keyboardRef = this.keyboardService.open(this.secondaryKeyboard);
+        finalLang = lang !== '' ? defaultJson.keyboardMapping[lang] : this.secondaryLang;
+        this.keyboardRef = this.keyboardService.open(finalLang);
       }
       if (this.selectedField) {
         this.selectedField.focus();
