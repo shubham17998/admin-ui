@@ -7,7 +7,7 @@
                 <span
                   *ngIf="!disableForms"
                   matTooltip="{{ 'center.keyboard-tooltip' | translate }}"
-                  (click)="openKeyboard('primary')"
+                  (click)="openKeyboard('primary', primaryData.langCode)"
                   style="color: grey; cursor: pointer;"
                   [ngStyle]="isPrimaryLangRTL ? {'float':'left'} : {'float':'right'}"
                   ><i class="material-icons">keyboard</i></span
@@ -432,7 +432,7 @@
                 <span
                   *ngIf="!disableForms"
                   matTooltip="{{languageNames['keyboard-tooltip'] | translate }}"
-                  (click)="openKeyboard('secondary')"
+                  (click)="openKeyboard('secondary', '')"
                   style="color: grey; cursor: pointer;"
                   [ngStyle]="isPrimaryLangRTL ? {'float':'left'} : {'float':'right'}"
                   ><i class="material-icons">keyboard</i></span
@@ -762,7 +762,7 @@
             <span
               *ngIf="!disableForms && pageName !=='Blacklisted Word'"
               matTooltip="{{ 'center.keyboard-tooltip' | translate }}"
-              (click)="openKeyboard('primary')"
+              (click)="openKeyboard('primary','')"
               style="float: right; color: grey; cursor: pointer;"
               ><i class="material-icons">keyboard</i></span
             >
@@ -792,7 +792,7 @@
             <span
               *ngIf="!disableForms"
               matTooltip="{{languageNames['keyboard-tooltip'] | translate }}"
-              (click)="openKeyboard('secondary')"
+              (click)="openKeyboard('secondary', '')"
               style="float: right; color: grey; cursor: pointer;"
               ><i class="material-icons">keyboard</i></span
             >

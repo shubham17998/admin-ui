@@ -150,6 +150,7 @@ export class ViewComponent implements OnInit {
   getUsers() {
     this.users = [];
     this.noData = false;
+    this.actionButtons = [];
     this.filtersApplied = false;
     const filters = Utils.convertFilter(this.activatedRoute.snapshot.queryParams, this.primaryLang);
     if (filters.filters.length > 0) {
@@ -161,16 +162,13 @@ export class ViewComponent implements OnInit {
     }
     let currenturl = this.router.url.split('/')[3];
     this.requestModel = new RequestModel(null, null, filters);
-    console.log(JSON.stringify(this.requestModel));
     this.dataStorageService
       .getUsersData(this.requestModel, currenturl)
       .subscribe(({ response, errors }) => {
-        console.log(response);
         if (response != null) {
           this.paginatorOptions.totalEntries = response.totalRecord;
           this.paginatorOptions.pageIndex = filters.pagination.pageStart;
           this.paginatorOptions.pageSize = filters.pagination.pageFetch;
-          console.log(this.paginatorOptions);
           if (response.data != null) {
             this.users = [...response.data];
             let url = this.router.url.split('/')[3];
