@@ -89,6 +89,7 @@ export class MaterDataCommonBodyComponent implements OnInit {
   searchResult:any;
   appConfig:any;
   confirmationPopupMessage:any;
+  isEditable:any;
 
   constructor(
     private location: Location,
@@ -113,14 +114,6 @@ export class MaterDataCommonBodyComponent implements OnInit {
     this.fieldsCount = 0;
     this.primaryLangCode = this.headerService.getUserPreferredLanguage();
     this.dateAdapter.setLocale(defaultJson.keyboardMapping[this.primaryLangCode]);
-    console.log("this.primaryLangCode>>>"+this.primaryLangCode);
-    console.log("config>>>"+defaultJson.languages["ara"].name);
-    /*if(url === "blocklisted-words"){      
-      this.primaryLang = this.primaryData.langCode;
-      if(this.primaryData.langCode === "ara"){
-        this.isPrimaryLangRTL = true;
-      }
-    }*/
     if(this.primaryLang === "ara"){
       this.isPrimaryLangRTL = true;
     }
@@ -132,6 +125,7 @@ export class MaterDataCommonBodyComponent implements OnInit {
       }        
     });
     this.queryParamLangCode = this.activatedRoute.snapshot.queryParamMap.get('langCode');
+    this.isEditable = this.activatedRoute.snapshot.queryParamMap.get('editable')
     this.activatedRoute.params.subscribe(response => {
       this.id = response.id;
       this.masterdataType = response.type;
@@ -239,7 +233,12 @@ export class MaterDataCommonBodyComponent implements OnInit {
         if(this.router.url.split('/')[4] !== "new"){
           name = this.router.url.split('/')[4];
           this.dataStorageService.getDynamicfieldDescriptionValue(name, this.primaryLang).subscribe(response => {
-            this.primaryData = {"name":name,"description":response.response.description,"dataType":"string","value":"", "code":"","langCode":this.primaryLang};
+            if(response.response){
+              this.primaryData = {"name":name,"description":response.response.description,"dataType":"string","value":"", "code":"","langCode":this.primaryLang};
+            }else{
+              this.primaryData = {"name":name,"description":"","dataType":"string","value":"", "code":"","langCode":this.primaryLang};
+            }
+            
           });
         }else{
           this.primaryData = {"name":name,"description":"","dataType":"string","value":"", "code":"","langCode":this.primaryLang};
@@ -368,11 +367,11 @@ export class MaterDataCommonBodyComponent implements OnInit {
                 this.secondaryData = response.response.data[0];
                 this.setSecondaryFrom("");
                 if(this.queryParamLangCode){
-                  document.getElementById("code").setAttribute("disabled", "true");
-                  document.getElementById("code"+this.queryParamLangCode).setAttribute("disabled", "true");
-                  if(!this.primaryData.code){
-                    this.primaryData.code = this.secondaryData.code;
-                  }
+                  Object.keys(this.primaryData).forEach(item =>{
+                    if(!this.primaryData[item]){
+                      this.primaryData[item] = this.secondaryData[item]
+                    }
+                  })
                 }
               }else{
                 this.secondaryData = null;

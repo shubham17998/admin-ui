@@ -47,6 +47,7 @@
                           [value]="primaryData[field.name]"                        
                           required={{field.ismandatory}}
                           *ngIf="field.name !== 'fieldVal'"
+                          [readonly]="!isEditable && id"
                         />
                       </span>
                       <span *ngIf="pageName === 'Dynamic Field' && field.name !== 'name'">
@@ -63,6 +64,7 @@
                           [value]="primaryData[field.name]"                        
                           required={{field.ismandatory}}
                           *ngIf="field.name !== 'fieldVal'"
+                          [readonly]="!isEditable && id"
                         />
                       </span>                       
                       <span *ngIf="pageName === 'Blocklisted Word'  && !isCreateForm && field.name === 'word'">
@@ -125,6 +127,7 @@
                         }}"
                         [value]="primaryData[field.name]"
                         required={{field.ismandatory}}
+                        [readonly]="!isEditable && id"
                       />
                     </mat-form-field>
 
@@ -193,6 +196,7 @@
                         [value]="primaryData[field.name]"
                         required={{field.ismandatory}}
                         rows="3" cols="40"
+                        [readonly]="!isEditable && id"
                       ></textarea>
                       </span>
                       <span *ngIf="pageName === 'Blocklisted Word'  && !isCreateForm && field.name === 'description'">
@@ -254,12 +258,13 @@
                         placeholder="{{field.label[primaryLang] | translate}}"
                         [value]="primaryData[field.name]"
                         required={{field.ismandatory}} 
+                        [readonly]="!isEditable && id"
                       />
                       <mat-datepicker-toggle
                         matSuffix
                         [for]="picker"
                       ></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-datepicker  [disabled]="!isEditable && id" #picker></mat-datepicker>
                     </mat-form-field>
 
                     <div *ngIf="field.showInSingleView === 'true' && field.inputType === 'dropdown' && field.name === 'locationCode'">
@@ -268,7 +273,8 @@
                           id="{{field.name}}"
                           [value]="primaryData[field.name]"
                           placeholder="{{ field.label[primaryLang] }}"
-                          required={{field.ismandatory}}>
+                          required={{field.ismandatory}}
+                          [disabled]="!isEditable && id">
                           <input placeholder="Search..." matInput type="text" (keyup)="onKey($event.target.value, 'primary')" class="example-input">
                           <mat-option *ngFor="let data of dropDownValues['locationCode']['primary']" 
                           (onSelectionChange)="captureDropDownValue($event, field.name, 'primary')" 
@@ -322,6 +328,7 @@
                           [value]="primaryData[field.name]"
                           placeholder="{{ field.label[primaryLang] }}"
                           required={{field.ismandatory}}
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.fileFormatCode.primary"
@@ -340,6 +347,7 @@
                           [value]="primaryData[field.name]"
                           placeholder="{{ field.label[primaryLang] }}"
                           required={{field.ismandatory}}
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.templateTypeCode.primary"
@@ -358,6 +366,7 @@
                           [value]="primaryData[field.name]"
                           placeholder="{{ field.label[primaryLang] }}"
                           required={{field.ismandatory}}
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.moduleId.primary"
@@ -470,6 +479,7 @@
                           }}"
                           [value]="secondaryData[field.name]"
                           *ngIf="field.name !== 'fieldVal'"
+                          [readonly]="!isEditable && id"
                         />
                       </span>
                       <span *ngIf="pageName === 'Dynamic Field' && field.name !== 'name'">
@@ -485,6 +495,7 @@
                           }}"
                           [value]="secondaryData[field.name]"
                           *ngIf="field.name !== 'fieldVal'"
+                          [readonly]="!isEditable && id"
                         />
                       </span>
                       <span *ngIf="pageName !== 'Dynamic Field'">
@@ -500,6 +511,7 @@
                           }}"
                           [value]="secondaryData[field.name]"
                           *ngIf="field.name !== 'fieldVal'"
+                          [readonly]="!isEditable && id"
                         />
                       </span>
                     </mat-form-field>
@@ -515,6 +527,7 @@
                           field.label[secondaryLang]
                         }}"
                         [value]="secondaryData[field.name]"
+                        [readonly]="!isEditable && id"
                       />
                     </mat-form-field>
                     <mat-form-field *ngIf="field.showInSingleView === 'true' && field.inputType === 'text' && field.name === 'code' && !isCreateForm && pageName !== 'Dynamic Field'">
@@ -592,6 +605,7 @@
                           }}"
                           [value]="secondaryData[field.name]"
                           rows="3" cols="40"
+                          [readonly]="!isEditable && id"
                         ></textarea>
                       </span>
                     </mat-form-field>
@@ -605,10 +619,12 @@
                         placeholder="{{field.label[secondaryLang] | translate}}"
                         [value]="secondaryData[field.name]"
                         field.required
+                        [readonly]="!isEditable && id"
                       />
                       <mat-datepicker-toggle
                         matSuffix
                         [for]="picker1"
+                        [disabled]="!isEditable && id"
                       ></mat-datepicker-toggle>
                       <mat-datepicker #picker1></mat-datepicker>
                     </mat-form-field>
@@ -618,7 +634,8 @@
                         <mat-select 
                           id="{{field.name}}{{secondaryLang}}"
                           [value]="secondaryData[field.name]"
-                          placeholder="{{ field.label[secondaryLang] }}">
+                          placeholder="{{ field.label[secondaryLang] }}"
+                          [disabled]="!isEditable && id">
                           <mat-option *ngFor="let data of dropDownValues['locationCode']['secondary']" 
                           (onSelectionChange)="captureDropDownValue($event, field.name, 'secondary')" 
                           [value]="data.fieldCode">
@@ -668,6 +685,7 @@
                           id="{{field.name}}{{secondaryLang}}"
                           [value]="secondaryData[field.name]"
                           placeholder="{{ field.label[secondaryLang] }}"
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.fileFormatCode.secondary"
@@ -685,6 +703,7 @@
                           id="{{field.name}}{{secondaryLang}}"
                           [value]="secondaryData[field.name]"
                           placeholder="{{ field.label[secondaryLang] }}"
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.templateTypeCode.secondary"
@@ -702,6 +721,7 @@
                           id="{{field.name}}{{secondaryLang}}"
                           [value]="secondaryData[field.name]"
                           placeholder="{{ field.label[secondaryLang] }}"
+                          [disabled]="!isEditable && id"
                         >
                           <mat-option
                             *ngFor="let data of dropDownValues.moduleId.secondary"

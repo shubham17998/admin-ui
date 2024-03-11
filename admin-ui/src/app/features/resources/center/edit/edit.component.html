@@ -107,7 +107,7 @@
               <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable['editable']" (click)="submitPrimaryPanel()">
                 {{ "center.update" | translate }}
               </button>
-              <button [disabled]="!primaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable['langCode']" (click)="submitPrimaryPanel()">
+              <button id="createButton" mat-raised-button *ngIf="isEditable['langCode']" (click)="submitPrimaryPanel()">
                 {{ "center.create" | translate }}
               </button>
               <button mat-raised-button id="cancel" (click)="cancel()" *ngIf="secondaryLang">
@@ -257,7 +257,7 @@
               </mat-form-field>
             </div>
             <mat-card-actions class="action-buttons">
-              <button [disabled]="!secondaryForm.dirty" id="createButton" mat-raised-button *ngIf="showUpdateButton"
+              <button [disabled]="!secondaryForm.dirty" id="createButton" mat-raised-button *ngIf="isEditable.editable"
                 (click)="submitSecondaryPanel()">
                 {{ "center.update" | translate }}
               </button>
@@ -392,7 +392,7 @@
             <div>
               <mat-form-field *ngFor="let fieldName of locationFieldNameList; let i = index; let odd = odd" [ngClass]="odd ? 'right-sizing-container' : 'left-sizing-container'">
                 <mat-label>{{ fieldName }}</mat-label>
-                <mat-select [value]="dynamicFieldValue[fieldName]" id="{{fieldName}}" (selectionChange)="
+                <mat-select [disabled]="isEditable.langCode" [value]="dynamicFieldValue[fieldName]" id="{{fieldName}}" (selectionChange)="
                     loadLocationDataDynamically($event, i);">
                   <mat-option *ngFor="let data of dynamicDropDown[fieldName]" [value]="data.code">
                     {{ data.name }}
@@ -520,7 +520,7 @@
             </mat-form-field>
             <div class="flex-display">
               <mat-form-field>
-                <input formControlName="noKiosk" id="noKiosk" matInput placeholder="{{ 'center.no-kiosk' | translate }}" required/>
+                <input [readonly]="isEditable.langCode" formControlName="noKiosk" id="noKiosk" matInput placeholder="{{ 'center.no-kiosk' | translate }}" required/>
                 <mat-error *ngIf="
                     common.noKiosk.touched &&
                     common.noKiosk.hasError('required')
@@ -660,10 +660,10 @@
             <mat-label>{{ "center.holidays" | translate }}</mat-label>
             <br /><br />
             <mat-form-field style="width: 70% !important;">
-              <input matInput [(ngModel)]="holidayDate" id="holidayDate" [min]="minDate" [ngModelOptions]="{ standalone: true }"
+              <input [disabled]="isEditable.langCode" matInput [(ngModel)]="holidayDate" id="holidayDate" [min]="minDate" [ngModelOptions]="{ standalone: true }"
                 [matDatepicker]="picker" placeholder="{{ 'center.datepicker-placeholder' | translate }}" />
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker [disabled]="isEditable.langCode" #picker></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
             <button [disabled]="disablePrimaryForm" id ="createExceptionalHoliday" mat-raised-button (click)="createExceptionalHoliday()">
               {{ "center.add-button" | translate }}
