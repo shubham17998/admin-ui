@@ -122,6 +122,9 @@ export class EditComponent {
         this.initializeComponent();
       }
     });
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.isEditable = params
+    });
     this.initialLocationCode = this.appConfigService.getConfig()['countryCode'];
     this.locCode = this.appConfigService.getConfig()['locationHierarchyLevel'];
     
@@ -140,7 +143,6 @@ export class EditComponent {
   }
 
   loadLanguages(primaryLangCode: string) {
-    console.log(`loadLanguages: primary: ${primaryLangCode}`);
     // Set the primary language
     this.primaryLang = this.headerService.getUserPreferredLanguage();
     this.translateService.use(this.primaryLang);    
@@ -148,7 +150,6 @@ export class EditComponent {
     this.selectLanguagesArr = [];
     let self = this;
     let otherLangsArr = this.supportedLanguages.filter(function(lang){if(lang.trim() && lang.trim() !== self.primaryLang.trim()){return lang.trim()}}); 
-    console.log("otherLangsArr>>>"+otherLangsArr);
     if(otherLangsArr.length > 0){
       otherLangsArr.forEach((language) => {
         if (defaultJson.languages && defaultJson.languages[language]) {
@@ -159,7 +160,8 @@ export class EditComponent {
         }
       });
       //Set the secondary language
-      this.secondaryLang = this.selectLanguagesArr[0]["code"];
+      this.secondaryLang = this.isEditable.langCode ? this.isEditable['langCode'] : this.selectLanguagesArr[0]["code"];
+
       this.primaryLang === this.secondaryLang ? this.showSecondaryForm = false : this.showSecondaryForm = true;
     }else{
       this.showSecondaryForm = false;
@@ -216,7 +218,6 @@ export class EditComponent {
   }
 
   initializeComponent() {
-    console.log(`initializeComponent -- primaryLang: ${this.primaryLang}`);
     //this.translateService.use(this.primaryLang);
     this.activatedRoute.params.subscribe(params => {
       this.centerId = params.id;
@@ -226,10 +227,6 @@ export class EditComponent {
       this.auditService.audit(8, centerSpecFile.auditEventIds[1], 'centers');
       this.filteredLanguages = this.supportedLanguages;
       this.getPrimaryPanelData(this.primaryLang);
-    });
-    
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.isEditable = params
     });
   }
 
@@ -333,6 +330,36 @@ export class EditComponent {
       //isActive: [{ value: false}]
     });
   }
+
+  isNotEditible(){
+    if(this.isEditable.langCode){
+      this.primaryForm.controls.contactPerson.disable()
+      this.primaryForm.controls.addressLine1.disable()
+      this.primaryForm.controls.addressLine2.disable()
+      this.primaryForm.controls.addressLine3.disable()
+
+      this.secondaryForm.controls.name.disable()
+      this.secondaryForm.controls.contactPerson.disable()
+      this.secondaryForm.controls.addressLine1.disable()
+      this.secondaryForm.controls.addressLine2.disable()
+      this.secondaryForm.controls.addressLine3.disable()
+
+      this.commonForm.controls.centerTypeCode.disable()
+      this.commonForm.controls.contactPhone.disable()
+      this.commonForm.controls.longitude.disable()
+      this.commonForm.controls.latitude.disable()
+      this.commonForm.controls.workingDays.disable()
+      this.commonForm.controls.zone.disable()
+      this.commonForm.controls.holidayZone.disable()
+      this.commonForm.controls.processingTime.disable()
+      this.commonForm.controls.startTime.disable()
+      this.commonForm.controls.endTime.disable()
+      this.commonForm.controls.lunchStartTime.disable()
+      this.commonForm.controls.lunchEndTime.disable()
+      this.commonForm.controls.startTime.disable()
+    }
+  }
+
 
   get primary() {
     return this.primaryForm.controls;
@@ -449,7 +476,8 @@ export class EditComponent {
         }
       },
       //error => this.showErrorPopup()
-      );     
+      ); 
+    this.isNotEditible()    
   }
   
   showErrorPopup() {
