@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   };
 
   zone: string;
-  appVersion :"";
+  appVersion : string;
   popupMessages: any;
   serverError: any;
   constructor(
@@ -53,12 +53,12 @@ export class HeaderComponent implements OnInit {
       this.popupMessages = response;
       this.serverError = response.serverError;
     });
-    this.appVersion = appConfigService.getConfig()['version'];
+    setTimeout(() => {
+      this.appVersion = this.appConfigService.getConfig()['version'];
+    }, 1)
   }
 
   ngOnInit() {
-    console.log(this.appVersion);
-    console.log('SreenWidth', this.screenResize);
     if (this.headerService.getUsername() !== '') {
       this.dataService
       .getLoggedInUserZone(
@@ -67,7 +67,6 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe(response => {
         if (response.response) {
-          console.log(response.response.zoneName);
           this.zone = response.response.zoneName;
         }else{
             this.dialog
