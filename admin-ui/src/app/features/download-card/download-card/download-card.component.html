@@ -2,15 +2,20 @@
     <p class="packet-status__header-text">{{'download-card.header' | translate}}</p>
     <mat-card style="border-radius: 0;">
         <table style="width: 100%;">
+            <caption>Download Card Table</caption>
             <thead>
                 <tr>
-                    <td style="width: 50%;"><strong><span style=" font-family: Roboto, sans-serif; margin-left:30px; font-size: 12px;">{{'download-card.text' | translate}}</span></strong></td>
-                    <td style="width: 50%;text-align: right;" *ngIf="searchLimitCount"><strong><span style=" font-family: Roboto, sans-serif; margin-left:30px; font-size: 12px;">{{'download-card.searchLimit' | translate}}&nbsp;{{searchLimitCount}}&nbsp;{{'download-card.outof' | translate}}&nbsp;{{searchLimitMaxCount}}&nbsp;{{'download-card.dailylimit' | translate}}</span></strong></td>
+                    <th id="textColumn" style="width: 50%;">
+                        <strong><span style="font-family: Roboto, sans-serif; margin-left:30px; font-size: 12px;">{{'download-card.text' | translate}}</span></strong>
+                    </th>
+                    <th id="limitColumn" style="width: 50%; text-align: right;" *ngIf="searchLimitCount">
+                        <strong><span style="font-family: Roboto, sans-serif; margin-left:30px; font-size: 12px;">{{'download-card.searchLimit' | translate}}&nbsp;{{searchLimitCount}}&nbsp;{{'download-card.outof' | translate}}&nbsp;{{searchLimitMaxCount}}&nbsp;{{'download-card.dailylimit' | translate}}</span></strong>
+                    </th>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <th id="downloadCard" colspan="2">
                         <span style="font-family: Roboto, sans-serif; margin-left: 30px; font-size: 10px;">Download Card</span>
-                    </td>
+                    </th>
                 </tr>
             </thead>
         </table><br>
@@ -27,8 +32,8 @@
                     <caption>Download Card Information</caption>
                     <thead>
                         <tr>
-                            <th>Download Card DOB</th>
-                            <th>Download Card Verify</th>
+                            <th id="dobHeader">Download Card DOB</th>
+                            <th id="verifyHeader">Download Card Verify</th>
                         </tr>
                     </thead>
                     <tr>
@@ -37,13 +42,13 @@
                             <table>
                                 <caption>Download Card Details</caption>
                                 <tr>
-                                    <th>{{ 'download-card.dob' | translate }}</th>
+                                    <th id="dateOfBirthHeader">{{ 'download-card.dob' | translate }}</th>
                                 </tr>
                                 <tr>
-                                    <th>{{ data.dateOfBirth }}</th>
+                                    <th id="dateOfBirth">{{ data.dateOfBirth }}</th>
                                 </tr>
                                 <tr>
-                                    <th>{{ 'download-card.verify' | translate }}</th>
+                                    <th id="verificationHeader">{{ 'download-card.verify' | translate }}</th>
                                 </tr>
                                 <tr>
                                     <td><strong>{{'download-card.dob' | translate}} :</strong> {{data.dateOfBirth}}</td>
@@ -58,7 +63,7 @@
                                           <mat-button-toggle  (click)="captureSelection('false')" value="flase"><mat-icon style="color:red;">clear</mat-icon>&nbsp;&nbsp;{{'download-card.reject' | translate}}</mat-button-toggle>
                                         </mat-button-toggle-group>
                                     </td>
-                                    <th>Action</th>
+                                    <th id="actionHeader">Action</th>
                                 </tr>
                                 <tr>
                                     <td>
