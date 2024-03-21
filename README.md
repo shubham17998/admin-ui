@@ -1,6 +1,6 @@
 # Admin Portal
-[![Maven Package upon a push](https://github.com/mosip/keymanager/actions/workflows/push_trigger.yml/badge.svg?branch=release-1.2.0)](https://github.com/mosip/admin-ui/actions/workflows/push_trigger.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=release-1.2.0&project=mosip_admin-ui&metric=alert_status)](https://sonarcloud.io/dashboard?branch=release-1.2.0&id=mosip_admin-ui)
+[![Maven Package upon a push](https://github.com/mosip/keymanager/actions/workflows/push_trigger.yml/badge.svg?branch=release-1.2.0.1)](https://github.com/mosip/admin-ui/actions/workflows/push_trigger.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=release-1.2.0.1&project=mosip_admin-ui&metric=alert_status)](https://sonarcloud.io/dashboard?branch=release-1.2.0.1&id=mosip_admin-ui)
 
 ## Overview
 See [overview and portal user guide](https://docs.mosip.io/1.2.0/modules/administration/admin-portal-user-guide).
@@ -27,10 +27,9 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Further help 
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## License
 This project is licensed under the terms of [Mozilla Public License 2.0](../LICENSE).
-
