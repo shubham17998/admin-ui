@@ -420,7 +420,7 @@
 
                 </div>
             </div>
-            <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+            <mat-divider [vertical]="true" [inset]="true" *ngIf="showSecondaryForm"></mat-divider>
               <div *ngIf="showSecondaryForm" class="secondary-form" [dir]="secondaryLang==='ara' ? 'rtl' : 'ltr'">
                 <mat-form-field style="padding-bottom: 10px;">
                 <mat-label><strong>{{ "center.selectLanguage" | translate }}</strong></mat-label>
@@ -806,7 +806,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-        <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+        <mat-divider [vertical]="true" [inset]="true" *ngIf="showSecondaryForm"></mat-divider>
           <div *ngIf="showSecondaryForm" class="secondary-form">
             <strong class="title">{{ secondaryLangDisplay }}</strong>
             <span
