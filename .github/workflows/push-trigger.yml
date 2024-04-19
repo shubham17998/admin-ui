@@ -66,11 +66,11 @@ jobs:
       ORG_KEY: ${{ secrets.ORG_KEY }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-  build-maven-admintest:
+  build-maven-uitest-admin:
     uses: mosip/kattu/.github/workflows/maven-build.yml@master
     with:
-      SERVICE_LOCATION: ./admintest
-      BUILD_ARTIFACT: admintest
+      SERVICE_LOCATION: ./uitest-admin
+      BUILD_ARTIFACT: uitest-admin
     secrets:
       OSSRH_USER: ${{ secrets.OSSRH_USER }}
       OSSRH_SECRET: ${{ secrets.OSSRH_SECRET }}
@@ -78,14 +78,14 @@ jobs:
       GPG_SECRET: ${{ secrets.GPG_SECRET }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-  build-admintest-local:
-    needs: build-maven-admintest
+  build-uitest-admin-local:
+    needs: build-maven-uitest-admin
     runs-on: ubuntu-latest
     env:
       NAMESPACE: ${{ secrets.dev_namespace_docker_hub }}
-      SERVICE_NAME: admintest
-      SERVICE_LOCATION: admintest
-      BUILD_ARTIFACT: admintest-local
+      SERVICE_NAME: uitest-admin
+      SERVICE_LOCATION: uitest-admin
+      BUILD_ARTIFACT: uitest-admin-local
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -135,14 +135,14 @@ jobs:
         if: failure() # Pick up events even if the job fails or is canceled.
 
 
-  build-docker-admintest:
-    needs: build-admintest-local
+  build-docker-uitest-admin:
+    needs: build-uitest-admin-local
     strategy:
       matrix:
         include:
-          - SERVICE_LOCATION: 'admintest'
-            SERVICE_NAME: 'admintest'
-            BUILD_ARTIFACT: 'admintest-local'
+          - SERVICE_LOCATION: 'uitest-admin'
+            SERVICE_NAME: 'uitest-admin'
+            BUILD_ARTIFACT: 'uitest-admin-local'
       fail-fast: false
     name: ${{ matrix.SERVICE_NAME }}
     uses: mosip/kattu/.github/workflows/docker-build.yml@master
@@ -156,14 +156,14 @@ jobs:
       RELEASE_DOCKER_HUB: ${{ secrets.RELEASE_DOCKER_HUB }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-  sonar-analysis-admintest:
-    needs: build-admintest-local
+  sonar-analysis-uitest-admin:
+    needs: build-uitest-admin-local
     if: "${{  github.event_name != 'pull_request' }}"
     uses: mosip/kattu/.github/workflows/maven-sonar-analysis.yml@master
     with:
-      SERVICE_LOCATION: admintest
+      SERVICE_LOCATION: uitest-admin
       SONAR_URL: 'https://sonarcloud.io'
-      PROJECT_KEY: 'mosip_admintest'
+      PROJECT_KEY: 'mosip_uitest-admin'
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       ORG_KEY: ${{ secrets.ORG_KEY }}
