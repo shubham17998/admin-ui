@@ -264,7 +264,7 @@
                         matSuffix
                         [for]="picker"
                       ></mat-datepicker-toggle>
-                      <mat-datepicker  [disabled]="!isEditable && id" #picker></mat-datepicker>
+                      <mat-datepicker (opened)="changeCalendarLang(primaryLangCode)" [disabled]="!isEditable && id" #picker></mat-datepicker>
                     </mat-form-field>
 
                     <div *ngIf="field.showInSingleView === 'true' && field.inputType === 'dropdown' && field.name === 'locationCode'">
@@ -420,7 +420,7 @@
 
                 </div>
             </div>
-            <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+            <mat-divider [vertical]="true" [inset]="true" *ngIf="showSecondaryForm"></mat-divider>
               <div *ngIf="showSecondaryForm" class="secondary-form" [dir]="secondaryLang==='ara' ? 'rtl' : 'ltr'">
                 <mat-form-field style="padding-bottom: 10px;">
                 <mat-label><strong>{{ "center.selectLanguage" | translate }}</strong></mat-label>
@@ -626,7 +626,7 @@
                         [for]="picker1"
                         [disabled]="!isEditable && id"
                       ></mat-datepicker-toggle>
-                      <mat-datepicker #picker1></mat-datepicker>
+                      <mat-datepicker (opened)="changeCalendarLang(secondaryLang)" #picker1></mat-datepicker>
                     </mat-form-field>
 
                     <div *ngIf="field.showInSingleView === 'true' && field.inputType === 'dropdown' && field.name === 'locationCode'">
@@ -806,7 +806,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-        <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+        <mat-divider [vertical]="true" [inset]="true" *ngIf="showSecondaryForm"></mat-divider>
           <div *ngIf="showSecondaryForm" class="secondary-form">
             <strong class="title">{{ secondaryLangDisplay }}</strong>
             <span

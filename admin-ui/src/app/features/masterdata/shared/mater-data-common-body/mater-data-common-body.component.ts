@@ -113,7 +113,6 @@ export class MaterDataCommonBodyComponent implements OnInit {
     this.url = this.router.url.split('/')[3];
     this.fieldsCount = 0;
     this.primaryLangCode = this.headerService.getUserPreferredLanguage();
-    this.dateAdapter.setLocale(defaultJson.keyboardMapping[this.primaryLangCode]);
     if(this.primaryLang === "ara"){
       this.isPrimaryLangRTL = true;
     }
@@ -297,6 +296,10 @@ export class MaterDataCommonBodyComponent implements OnInit {
     }
     this.setSecondaryFrom("");
     
+  }
+
+  changeCalendarLang(lang:string){
+    this.dateAdapter.setLocale(defaultJson.keyboardMapping[lang]);
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
