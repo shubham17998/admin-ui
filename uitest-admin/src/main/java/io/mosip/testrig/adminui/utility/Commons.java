@@ -88,7 +88,6 @@ public class Commons  extends BaseClass{
 	public  static void click(ExtentTest test,WebDriver driver, By by) throws IOException {
 		logger.info("Clicking " + by );
 		try {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(by));
 			Thread.sleep(1000);
 			driver.findElement(by).click();
 			Thread.sleep(500);
@@ -144,7 +143,6 @@ public class Commons  extends BaseClass{
 	public static void enter(ExtentTest test,WebDriver driver, By by,String value) throws IOException {
 		logger.info("Entering " + by +value);
 			try {
-				(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(by));
 				driver.findElement(by).clear();
 				driver.findElement(by).sendKeys(value);
 				try {
