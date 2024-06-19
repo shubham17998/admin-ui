@@ -77,7 +77,7 @@ export const navItems = [
     roles: ['REGISTRATION_ADMIN']
   },
   {
-    displayName: 'Download Card',
+    displayName: 'menuItems.item9.title',
     icon: './assets/images/packet-status.svg',
     route: '/admin/download-card',
     children: null,
