@@ -16,13 +16,14 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.json.simple.JSONObject;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.mosip.testrig.adminui.authentication.fw.util.RestClient;
 import io.mosip.testrig.adminui.kernel.util.CommonLibrary;
 import io.mosip.testrig.adminui.kernel.util.ConfigManager;
 import io.mosip.testrig.adminui.kernel.util.KernelAuthentication;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 //import org.apache.log4j.Logger;
 
@@ -190,5 +191,40 @@ public class BaseTestCaseFunc {
 		Response response = RestClient.patchRequestWithCookieAndQueryParm(url, map, MediaType.APPLICATION_JSON,
 				MediaType.APPLICATION_JSON, "Authorization", token);
 		logger.info(response);
+	}
+	
+	public static int  getHierarchyNumbers() {
+        KernelAuthentication kernelAuthLib = new KernelAuthentication();
+        String token = kernelAuthLib.getTokenByRole("admin");
+        String url = ApplnURI + props.getProperty("locationHierarchyLevels") + getlang();
+        Response response = RestClient.getRequestWithCookie(url, MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON, "Authorization", token);
+        
+        String responseString = response.asString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        int maxHierarchyLevel = Integer.MIN_VALUE;
+
+        try {
+            JsonNode rootNode = objectMapper.readTree(responseString);
+            JsonNode locationHierarchyLevels = rootNode.path("response").path("locationHierarchyLevels");
+
+            for (JsonNode level : locationHierarchyLevels) {
+                int hierarchyLevel = level.path("hierarchyLevel").asInt();
+                if (hierarchyLevel > maxHierarchyLevel) {
+                    maxHierarchyLevel = hierarchyLevel;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maxHierarchyLevel;
+    }
+	
+	public static String getlang() {
+		String language=ConfigManager.getloginlang();
+		if(language.equalsIgnoreCase("sin")) {
+			return "eng";
+		}else {
+			return language;
+		}
 	}
 }
