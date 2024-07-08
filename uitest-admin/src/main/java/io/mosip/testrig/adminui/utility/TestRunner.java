@@ -14,7 +14,6 @@ import org.testng.xml.XmlTest;
 import io.mosip.testrig.adminui.dbaccess.DBManager;
 import io.mosip.testrig.adminui.fw.util.AdminTestUtil;
 import io.mosip.testrig.adminui.kernel.util.ConfigManager;
-import io.mosip.testrig.adminui.testcase.*;
 
 
 public class TestRunner {
@@ -147,9 +146,7 @@ public class TestRunner {
 		runner.setOutputDirectory("testng-report");
 		System.getProperties().setProperty("emailable.report2.name", "ADMINUI-" + BaseTestCaseFunc.environment 
 				+ "-run-" + System.currentTimeMillis() + "-report.html");
-
 		runner.run();
-
 		DBManager.clearMasterDbData();
 		System.exit(0);
 	}
