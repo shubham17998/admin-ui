@@ -62,9 +62,6 @@ public class DBManager extends BaseClass {
 							statement.addBatch("delete from doc_category  where cr_by ='"+BaseClass.userid+"'");
 							statement.addBatch("delete from doc_type  where cr_by ='"+BaseClass.userid+"'");
 							statement.addBatch("delete from dynamic_field  where cr_by ='"+BaseClass.userid+"'");
-							statement.addBatch("delete from gender  where cr_by ='"+BaseClass.userid+"'");
-							statement.addBatch("delete from id_type  where cr_by ='"+BaseClass.userid+"'");
-							statement.addBatch("delete from individual_type  where cr_by ='"+BaseClass.userid+"'");
 							statement.addBatch("delete from language  where cr_by ='"+BaseClass.userid+"'");
 							statement.addBatch("delete from location  where cr_by ='"+BaseClass.userid+"'");
 							statement.addBatch("delete from loc_hierarchy_list  where cr_by ='"+BaseClass.userid+"'");
