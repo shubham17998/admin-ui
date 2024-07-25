@@ -331,13 +331,13 @@
                           [disabled]="!isEditable && id"
                         >
                           <mat-option
-                            *ngFor="let data of dropDownValues.fileFormatCode.primary"
+                            *ngFor="let option of fileFormatOptions"
                             (onSelectionChange)="
                               captureDropDownValue($event, field.name, 'primary')
                             "
-                            [value]="data.code"
+                            [value]="option.code"
                           >
-                            {{ data.description }}
+                            {{ option.label[primaryLang] }}
                           </mat-option>
                         </mat-select>
                         </div>
@@ -369,13 +369,13 @@
                           [disabled]="!isEditable && id"
                         >
                           <mat-option
-                            *ngFor="let data of dropDownValues.moduleId.primary"
+                            *ngFor="let option of moduleNameOptions"
                             (onSelectionChange)="
                               captureDropDownValue($event, field.name, 'primary')
                             "
-                            [value]="data.id"
+                            [value]="option.id"
                           >
-                            {{ data.name }}
+                            {{ option.label[primaryLang] }}
                           </mat-option>
                         </mat-select>
                         </div>
@@ -688,13 +688,13 @@
                           [disabled]="!isEditable && id"
                         >
                           <mat-option
-                            *ngFor="let data of dropDownValues.fileFormatCode.secondary"
+                            *ngFor="let option of fileFormatOptions"
                             (onSelectionChange)="
                               captureDropDownValue($event, field.name, 'secondary')
                             "
-                            [value]="data.code"
+                            [value]="option.code"
                           >
-                            {{ data.description }}
+                            {{ option.label[secondaryLang] }}
                           </mat-option>
                         </mat-select>
                         </div>
@@ -724,13 +724,13 @@
                           [disabled]="!isEditable && id"
                         >
                           <mat-option
-                            *ngFor="let data of dropDownValues.moduleId.secondary"
+                          *ngFor="let option of moduleNameOptions"
                             (onSelectionChange)="
                               captureDropDownValue($event, field.name, 'secondary')
                             "
-                            [value]="data.id"
+                            [value]="option.id"
                           >
-                            {{ data.name }}
+                            {{ option.label[secondaryLang] }}
                           </mat-option>
                         </mat-select>
                         </div>
