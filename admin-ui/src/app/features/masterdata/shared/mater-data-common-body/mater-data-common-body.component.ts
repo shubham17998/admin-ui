@@ -35,6 +35,18 @@ import { HeaderService } from 'src/app/core/services/header.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { DateAdapter } from '@angular/material/core';
+import { HttpClient } from '@angular/common/http';
+
+interface FileFormatOption {
+  code: string;
+  label: { [lang: string]: string };
+}
+
+interface ModuleNameOption {
+  code: any;
+  id: string;
+  label: { [lang: string]: string };
+}
 
 @Component({
   selector: 'app-mater-data-common-body',
@@ -90,6 +102,8 @@ export class MaterDataCommonBodyComponent implements OnInit {
   appConfig:any;
   confirmationPopupMessage:any;
   isEditable:any;
+  fileFormatOptions: FileFormatOption[] = [];
+  moduleNameOptions: ModuleNameOption[] = [];
 
   constructor(
     private location: Location,
@@ -103,7 +117,8 @@ export class MaterDataCommonBodyComponent implements OnInit {
     private headerService: HeaderService,
     private translateService: TranslateService,
     private auditService: AuditService, 
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private http: HttpClient
   ) { 
     this.tomorrow.setDate(this.tomorrow.getDate() + 1);
   }
@@ -113,6 +128,8 @@ export class MaterDataCommonBodyComponent implements OnInit {
     this.url = this.router.url.split('/')[3];
     this.fieldsCount = 0;
     this.primaryLangCode = this.headerService.getUserPreferredLanguage();
+    this.fetchFileFormatOptions();
+    this.fetchModuleNameOptions();
     if(this.primaryLang === "ara"){
       this.isPrimaryLangRTL = true;
     }
@@ -581,35 +598,15 @@ export class MaterDataCommonBodyComponent implements OnInit {
   }
   getTemplateFileFormat() {
     this.dataStorageService
-      .getDropDownValuesForMasterData('templatefileformats/'+this.primaryLang)
-      .subscribe(response => {
-        this.dropDownValues.fileFormatCode.primary = response.response.templateFileFormats;
-      });
-    this.dataStorageService
       .getDropDownValuesForMasterData('templatetypes/'+this.primaryLang)
       .subscribe(response => {
         this.dropDownValues.templateTypeCode.primary = response.response.templateTypes;
       });
-    this.dataStorageService
-      .getDropDownValuesForMasterData('modules/'+this.primaryLang)
-      .subscribe(response => {
-        this.dropDownValues.moduleId.primary = response.response.modules;
-      });
     if(this.secondaryLang){
-      this.dataStorageService
-        .getDropDownValuesForMasterData('templatefileformats/'+this.secondaryLang)
-        .subscribe(response => {
-          this.dropDownValues.fileFormatCode.secondary = response.response.templateFileFormats;
-        });
       this.dataStorageService
         .getDropDownValuesForMasterData('templatetypes/'+this.secondaryLang)
         .subscribe(response => {
           this.dropDownValues.templateTypeCode.secondary = response.response.templateTypes;
-        });
-      this.dataStorageService
-        .getDropDownValuesForMasterData('modules/'+this.secondaryLang)
-        .subscribe(response => {
-          this.dropDownValues.moduleId.secondary = response.response.modules;
         });
     }    
   }
@@ -1172,4 +1169,73 @@ export class MaterDataCommonBodyComponent implements OnInit {
         disableClose: true
       });
   }
+
+  fetchFileFormatOptions() {
+    let self = this;
+    this.dataStorageService
+      .getDropDownValuesForMasterData('templatefileformats/' + this.primaryLang)
+      .subscribe((response) => {
+        const dbFileFormats = response.response.templateFileFormats;
+
+        this.http.get<any>('assets/entity-spec/templates.json').subscribe((jsonResponse) => {
+          const jsonFileFormats = jsonResponse['columnsToDisplay'].find(
+            (col: { name: string }) => col.name === 'fileFormatCode'
+          ).options;
+
+            const uniqueFileFormats = [];
+            const uniqueCodes = new Set();
+
+            dbFileFormats.every(function(dbFileFormat) {
+              if (!uniqueCodes.has(dbFileFormat.code)) {
+                uniqueCodes.add(dbFileFormat.code);
+                jsonFileFormats.every(function(jsonFileFormat) {
+                  if (jsonFileFormat.code === dbFileFormat.code) {
+                    uniqueFileFormats.push(jsonFileFormat);
+                    return false;
+                  } else {
+                    return true;
+                  }
+                });
+              }
+              self.fileFormatOptions = uniqueFileFormats;
+              return true;
+            });
+        });
+      });
+  }
+
+  fetchModuleNameOptions() {
+    let self = this;
+    this.dataStorageService
+      .getDropDownValuesForMasterData('modules/' + this.primaryLang)
+      .subscribe((response) => {
+        const dbModules = response.response.modules;
+  
+        this.http.get<any>('assets/entity-spec/templates.json').subscribe((jsonResponse) => {
+          const jsonModules = jsonResponse['columnsToDisplay'].find(
+            (col: { name: string }) => col.name === 'moduleId'
+          ).options;
+  
+          const uniqueModules = [];
+          const uniqueIds = new Set();
+  
+          dbModules.every(function(dbModule) {
+            if (!uniqueIds.has(dbModule.id)) {
+              uniqueIds.add(dbModule.id);
+              jsonModules.every(function(jsonModule) {
+                if (jsonModule.id === dbModule.id) {
+                  uniqueModules.push(jsonModule);
+                  return false;
+                } else {
+                  return true;
+                }
+              });
+            }
+            self.moduleNameOptions = uniqueModules;
+            return true;
+          });
+        });
+      });
+  }
+
 }
