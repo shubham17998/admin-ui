@@ -385,10 +385,12 @@ export class CreateComponent {
       fieldName = this.locationFieldNameList[parseInt(index)+1];
       locationCode = event.value; 
       this.dynamicFieldValue[this.locationFieldNameList[parseInt(index)]] = event.value;
-      
-      /*for (let i = parseInt(index)+1; i < this.locationFieldNameList.length; i++) {
-       this.dynamicFieldValue[this.locationFieldNameList[parseInt(index)+1]] = [];
-      }*/
+    }
+    if (index > 0) {
+      for (let i = index + 1; i < this.locationFieldNameList.length; i++) {
+        this.dynamicFieldValue[this.locationFieldNameList[i]] = "";
+        this.dynamicDropDown[this.locationFieldNameList[i]] = [];
+      }
     }
     this.dataStorageService
     .getImmediateChildren(locationCode, this.primaryLang)
