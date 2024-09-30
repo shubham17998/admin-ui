@@ -1,12 +1,17 @@
 # Start with a base image that includes Java 21
 FROM openjdk:21-slim
 
-# Install additional dependencies, such as Selenium and Chrome
+# Install additional dependencies, such as Selenium, Chrome, and kubectl
 USER root
 
 RUN apt-get update && \
     apt-get install -y wget curl unzip xvfb libxi6 libgconf-2-4 chromium chromium-driver
-    
+
+# Install kubectl
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    chmod +x kubectl && \
+    mv kubectl /usr/local/bin/kubectl
+
 # Define build-time arguments and labels
 ARG SOURCE
 ARG COMMIT_HASH
